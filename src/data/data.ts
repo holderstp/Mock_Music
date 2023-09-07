@@ -97,11 +97,11 @@ export const musics = [
        
     },
     {
-        name: 'Có khóc cũng thế thôi',
-        author: 'Hào',
-        genre: 'Love',
-        audio: '../music/CoKhocCungTheThoi-Hao-8373914.mp3',
-        album_img: '../imgs/ckctt.jpg',
+        name: 'Ngày tàn',
+        author: 'DSK',
+        genre: 'Rap',
+        audio: '../music/NgayTanLiveAtKong-DsK-5412351.mp3',
+        album_img: '../imgs/maxresdefault.jpg',
         id: '13'
     },
 
