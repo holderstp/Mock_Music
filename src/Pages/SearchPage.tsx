@@ -12,11 +12,13 @@ interface Props {
   // genre: string;
   // genres: string;
   // isSearch: boolean;
+  isPlaying: boolean;
   search: string;
   // windowWidth: number;
   // setId: (e: string) => void;
   // setIsFull: (e: boolean) => void;
   handleSearch: (e: any) => void;
+  handlePlayer: (index: any) => void;
 }
 
 const SearchPage = ({
@@ -30,18 +32,22 @@ const SearchPage = ({
   // genre,
   // genres,
   // isSearch,
+  isPlaying,
   search,
   // windowWidth,
   // setId,
   handleSearch,
+  handlePlayer,
 }: Props) => {
+  const params = useParams();
+  console.log(params);
+  console.log(isPlaying);
   const filterData = musics.filter(
     (music) =>
       search.toLowerCase() === music.name.toLowerCase() ||
       search === music.author.toLowerCase() ||
       search === music.genre.toLowerCase()
   );
-  console.log(filterData);
 
   return (
     <div className="flex flex-col">
@@ -54,8 +60,8 @@ const SearchPage = ({
         />
       </div>
       <div className="flex space-x-4">
-        {filterData.map((item) => (
-          <button className="w-1/4">
+        {filterData.map((item, index) => (
+          <button className="w-1/4" onClick={() => handlePlayer(index)}>
             <img src={item.album_img}></img>
             <h1>{item.name}</h1>
             <h3>{item.author}</h3>

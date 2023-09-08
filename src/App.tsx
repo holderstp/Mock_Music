@@ -2,7 +2,7 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import MainLayout from "./Components/MainLayout";
 import HomePage from "./Pages/HomePages";
 import SearchPage from "./Pages/SearchPage";
@@ -19,8 +19,15 @@ function App() {
   const [search, setSearch] = useState<string>("");
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
   const [isSidebar, setIsSidebar] = useState<boolean>(false);
+  const filterData = musics.filter(
+    (music) =>
+      search.toLowerCase() === music.name.toLowerCase() ||
+      search === music.author.toLowerCase() ||
+      search === music.genre.toLowerCase()
+  );
 
   const handlePlayer = (index: any) => {
+    console.log("1");
     console.log(index);
     setId((index + 1).toString());
     // setIndex(index);
@@ -29,6 +36,13 @@ function App() {
   const handleSearch = (e: any) => {
     setSearch(e.target.value);
     console.log(search);
+  };
+  const handlePlayerSearch = (index: any) => {
+    console.log(index);
+    console.log("2");
+    setId((index + 1).toString());
+
+    setIsplaying(true);
   };
 
   return (
@@ -46,6 +60,7 @@ function App() {
                   setId={setId}
                   isFull={isFull}
                   windowWidth={windowWidth}
+                  filterData={filterData}
                 />
               }
             >
@@ -55,9 +70,14 @@ function App() {
                   element={<HomePage handlePlayer={handlePlayer} />}
                 ></Route>
                 <Route
-                  path="/main/search"
+                  path="/main/:name"
                   element={
-                    <SearchPage search={search} handleSearch={handleSearch} />
+                    <SearchPage
+                      search={search}
+                      handleSearch={handleSearch}
+                      handlePlayer={handlePlayerSearch}
+                      isPlaying={isPlaying}
+                    />
                   }
                 ></Route>
               </Route>
@@ -69,9 +89,14 @@ function App() {
                 element={<HomePage handlePlayer={handlePlayer} />}
               ></Route>
               <Route
-                path="/main/search"
+                path="/main/:name"
                 element={
-                  <SearchPage handleSearch={handleSearch} search={search} />
+                  <SearchPage
+                    handleSearch={handleSearch}
+                    search={search}
+                    handlePlayer={handlePlayerSearch}
+                    isPlaying={isPlaying}
+                  />
                 }
               ></Route>
             </Route>

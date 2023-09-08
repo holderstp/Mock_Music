@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useParams, Route } from "react-router-dom";
 
 const MainLayout = () => {
   return (
@@ -23,6 +23,7 @@ const MainLayout = () => {
           </nav>
         </div>
       </div>
+
       <div className="w-2/3 bg-indigo-100">
         <Outlet />
       </div>

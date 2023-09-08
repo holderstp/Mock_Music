@@ -13,6 +13,7 @@ import {
   VolumeOff,
   VolumeOn,
 } from "../FaIcons/index";
+import ListSearch from "../Components/ListSearch";
 
 interface Props {
   index: any;
@@ -20,8 +21,17 @@ interface Props {
   setId: (e: string) => void;
   setIsFull: (e: boolean) => void;
   windowWidth: number;
+  filterData: any;
 }
-const Player = ({ index, setId, setIsFull, isFull, windowWidth }: Props) => {
+const Player = ({
+  index,
+  setId,
+  setIsFull,
+  isFull,
+  windowWidth,
+  filterData,
+}: Props) => {
+  const params = useParams();
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
   const [volume, setVolume] = useState<number>(1);
   const [duration, setDuration] = useState<number>(0);
@@ -190,7 +200,7 @@ const Player = ({ index, setId, setIsFull, isFull, windowWidth }: Props) => {
 
     return `${newMinutes}:${newSeconds}`;
   };
-
+  // Skip Foward
   const skipForward = () => {
     if (index === "") {
       alert("Choose a song!");
@@ -204,7 +214,7 @@ const Player = ({ index, setId, setIsFull, isFull, windowWidth }: Props) => {
       setId(newId.toString());
     }
   };
-
+  // Skip Random
   const skipRandom = () => {
     const idNum = parseInt(index);
     const randomNum = Math.floor(Math.random() * 9);
@@ -215,7 +225,7 @@ const Player = ({ index, setId, setIsFull, isFull, windowWidth }: Props) => {
       setId(randomNum.toString());
     }
   };
-
+  // Skip Back
   const skipBack = () => {
     console.log("ahihi");
     if (index === "") {
@@ -226,7 +236,7 @@ const Player = ({ index, setId, setIsFull, isFull, windowWidth }: Props) => {
       setId(newId.toString());
     }
   };
-
+  // WhilePlaying
   const whilePlaying = () => {
     if (windowWidth >= 830 || isFull) {
       if (progressBar.current !== null && audioTag.current !== null) {
@@ -236,7 +246,7 @@ const Player = ({ index, setId, setIsFull, isFull, windowWidth }: Props) => {
       }
     }
   };
-
+  // Change Range
   const changeRange = () => {
     if (windowWidth >= 830 || isFull) {
       if (progressBar.current !== null && audioTag.current !== null) {
@@ -245,7 +255,7 @@ const Player = ({ index, setId, setIsFull, isFull, windowWidth }: Props) => {
       }
     }
   };
-
+  // Change Current Time
   const changeCurrentTime = () => {
     if (progressBar.current !== null) {
       setCurrentTime(parseFloat(progressBar.current.value));
@@ -253,7 +263,212 @@ const Player = ({ index, setId, setIsFull, isFull, windowWidth }: Props) => {
   };
   return (
     <>
-      <div className="musicDiv fixed left-0 right-0 bottom-0 w-full flex bg-gray-800 transition ease-in-out delay-150 bg-grey-500 hover:-translate-y-1 hover:scale-100 hover:bg-indigo-200 duration-300">
+      {params.name === "search" ? (
+        <div className="musicDiv fixed left-0 right-0 bottom-0 w-full flex bg-gray-800 transition ease-in-out delay-150 bg-grey-500 hover:-translate-y-1 hover:scale-100 hover:bg-indigo-200 duration-300">
+          {filterData.map((music: any) =>
+            index === music.id ? (
+              <div
+                onClick={() => setIsFull(windowWidth <= 820 && !isFull)}
+                className="music flex"
+                key={music.id}
+              >
+                {!isFull ? (
+                  <div className="flex justify-start items-center">
+                    <div className="w-50%">
+                      <img src={music.album_img} width="20%" />
+                    </div>
+                    <div className="w-50%">
+                      <h1>{music.name}</h1>
+                      <h3>{music.author}</h3>
+                    </div>
+                  </div>
+                ) : (
+                  ""
+                )}
+                <audio src={music.audio} ref={audioTag} />
+                <div className="player flex">
+                  <div className="inputButtons flex">
+                    {isFull || windowWidth >= 830 ? (
+                      <div className="progressBar">
+                        <p className="PcurrentTime">
+                          {calculateDuration(currentTime)}
+                        </p>
+                        <input
+                          type="range"
+                          className="currentProgress"
+                          defaultValue="0"
+                          ref={progressBar}
+                          onChange={changeRange}
+                        />
+
+                        <p className="Pduration">
+                          {duration &&
+                            !isNaN(duration) &&
+                            calculateDuration(duration)}
+                        </p>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                    <div className="buttons">
+                      {windowWidth >= 830 || isFull ? (
+                        <button
+                          onClick={() => setIsRandom(!isRandom)}
+                          className="randomMusicsButton"
+                        >
+                          {isRandom ? (
+                            <RandomMusicsTrue />
+                          ) : (
+                            <RandomMusicsFalse />
+                          )}
+                        </button>
+                      ) : (
+                        ""
+                      )}
+                      <button onClick={skipBack}>
+                        <SkipBack />
+                      </button>
+                      <button
+                        className="playPause"
+                        onClick={() => setIsPlaying(!isPlaying)}
+                      >
+                        {isPlaying ? <Pause /> : <Play />}
+                      </button>
+                      <button onClick={skipForward}>
+                        <SkipForward />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {windowWidth > 825 && (
+                  <div className="test">
+                    <button
+                      className="volumeButton"
+                      onClick={() => setIsMuted(!isMuted)}
+                    >
+                      {isMuted ? <VolumeOff /> : <VolumeOn />}
+                    </button>
+                    <input
+                      type="range"
+                      step="0.01"
+                      onChange={(e: any) => setVolume(e.target.value)}
+                      value={volume}
+                      max="1"
+                      min="0"
+                    />
+                  </div>
+                )}
+              </div>
+            ) : (
+              ""
+            )
+          )}
+        </div>
+      ) : (
+        <div className="musicDiv fixed left-0 right-0 bottom-0 w-full flex bg-gray-800 transition ease-in-out delay-150 bg-grey-500 hover:-translate-y-1 hover:scale-100 hover:bg-indigo-200 duration-300">
+          {musics.map((music: any) =>
+            index === music.id ? (
+              <div
+                onClick={() => setIsFull(windowWidth <= 820 && !isFull)}
+                className="music flex"
+                key={music.id}
+              >
+                {!isFull ? (
+                  <div className="flex justify-start items-center">
+                    <div className="w-50%">
+                      <img src={music.album_img} width="20%" />
+                    </div>
+                    <div className="w-50%">
+                      <h1>{music.name}</h1>
+                      <h3>{music.author}</h3>
+                    </div>
+                  </div>
+                ) : (
+                  ""
+                )}
+                <audio src={music.audio} ref={audioTag} />
+                <div className="player flex">
+                  <div className="inputButtons flex">
+                    {isFull || windowWidth >= 830 ? (
+                      <div className="progressBar">
+                        <p className="PcurrentTime">
+                          {calculateDuration(currentTime)}
+                        </p>
+                        <input
+                          type="range"
+                          className="currentProgress"
+                          defaultValue="0"
+                          ref={progressBar}
+                          onChange={changeRange}
+                        />
+
+                        <p className="Pduration">
+                          {duration &&
+                            !isNaN(duration) &&
+                            calculateDuration(duration)}
+                        </p>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                    <div className="buttons">
+                      {windowWidth >= 830 || isFull ? (
+                        <button
+                          onClick={() => setIsRandom(!isRandom)}
+                          className="randomMusicsButton"
+                        >
+                          {isRandom ? (
+                            <RandomMusicsTrue />
+                          ) : (
+                            <RandomMusicsFalse />
+                          )}
+                        </button>
+                      ) : (
+                        ""
+                      )}
+                      <button onClick={skipBack}>
+                        <SkipBack />
+                      </button>
+                      <button
+                        className="playPause"
+                        onClick={() => setIsPlaying(!isPlaying)}
+                      >
+                        {isPlaying ? <Pause /> : <Play />}
+                      </button>
+                      <button onClick={skipForward}>
+                        <SkipForward />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {windowWidth > 825 && (
+                  <div className="test">
+                    <button
+                      className="volumeButton"
+                      onClick={() => setIsMuted(!isMuted)}
+                    >
+                      {isMuted ? <VolumeOff /> : <VolumeOn />}
+                    </button>
+                    <input
+                      type="range"
+                      step="0.01"
+                      onChange={(e: any) => setVolume(e.target.value)}
+                      value={volume}
+                      max="1"
+                      min="0"
+                    />
+                  </div>
+                )}
+              </div>
+            ) : (
+              ""
+            )
+          )}
+        </div>
+      )}
+      {/* <div className="musicDiv fixed left-0 right-0 bottom-0 w-full flex bg-gray-800 transition ease-in-out delay-150 bg-grey-500 hover:-translate-y-1 hover:scale-100 hover:bg-indigo-200 duration-300">
         {musics.map((music) =>
           index === music.id ? (
             <div
@@ -266,7 +481,6 @@ const Player = ({ index, setId, setIsFull, isFull, windowWidth }: Props) => {
                   <div className="w-50%">
                     <img src={music.album_img} width="20%" />
                   </div>
-
                   <div className="w-50%">
                     <h1>{music.name}</h1>
                     <h3>{music.author}</h3>
@@ -354,7 +568,7 @@ const Player = ({ index, setId, setIsFull, isFull, windowWidth }: Props) => {
             ""
           )
         )}
-      </div>
+      </div> */}
 
       <div>
         <Outlet />
