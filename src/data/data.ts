@@ -88,11 +88,11 @@ export const musics = [
         id: '11'
     },
     {
-        name: 'Có khóc cũng thế thôi',
-        author: 'Hào',
+        name: 'Không còn em',
+        author: 'Madihu',
         genre: 'Love',
-        audio: '../music/CoKhocCungTheThoi-Hao-8373914.mp3',
-        album_img: '../imgs/ckctt.jpg',
+        audio: '../music/khong-con-em-madihu.mp3',
+        album_img: '../imgs/1689913184313_640.jpg',
         id: '12',
        
     },
@@ -104,6 +104,7 @@ export const musics = [
         album_img: '../imgs/maxresdefault.jpg',
         id: '13'
     },
+    
 
 
     
