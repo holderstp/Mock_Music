@@ -4,10 +4,13 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import MainLayout from "./Components/MainLayout";
-import HomePage from "./Pages/HomePages";
+
 import SearchPage from "./Pages/SearchPage";
 import Player from "./Pages/Player";
 import { musics } from "./data/data";
+import { HomePage } from "./Pages/HomePage";
+import Genres from "./Pages/Genres";
+import Like from "./Pages/Like";
 
 function App() {
   const [isPlaying, setIsplaying] = useState(false);
@@ -19,15 +22,17 @@ function App() {
   const [search, setSearch] = useState<string>("");
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
   const [isSidebar, setIsSidebar] = useState<boolean>(false);
-
+  // search Data
   const filterData = musics.filter(
     (music) =>
       search.toLowerCase() === music.name.toLowerCase() ||
       search === music.author.toLowerCase() ||
       search === music.genre.toLowerCase()
   );
+  ///
+
   const handlePlayer = (index: any) => {
-    setId((index + 1).toString());
+    setId(index);
 
     setIsplaying(true);
   };
@@ -38,12 +43,23 @@ function App() {
     setId(index);
     setIsplaying(true);
   };
+  const handlePlayerGenres = (index: any) => {
+    setId(index);
+    setIsplaying(true);
+  };
   const clickSearch = () => {
     setIsSearch(true);
   };
   const clickHome = () => {
     setIsSearch(false);
   };
+
+  ///
+  const pathname = window.location.pathname; //returns the current url minus the domain name
+  console.log(pathname);
+  if (pathname === "/") {
+    window.location.href = "/main/home";
+  }
 
   return (
     <div className="h-screen">
@@ -92,6 +108,11 @@ function App() {
                     />
                   }
                 ></Route>
+                <Route path="/main/like" element={<Like />}></Route>
+                <Route
+                  path="/main/genres/:gen"
+                  element={<Genres handlePlayer={handlePlayerGenres} />}
+                ></Route>
               </Route>
             </Route>
           ) : (
@@ -121,6 +142,11 @@ function App() {
                     filterData={filterData}
                   />
                 }
+              ></Route>
+              <Route path="/main/like" element={<Like />}></Route>
+              <Route
+                path="/main/genres/:gen"
+                element={<Genres handlePlayer={handlePlayerGenres} />}
               ></Route>
             </Route>
           )}

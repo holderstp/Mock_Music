@@ -165,7 +165,7 @@ const Player = ({
   };
   return (
     <>
-      <div className="fixed left-0 right-0 bottom-0 w-full flex bg-black transition ease-in-out delay-150  hover:-translate-y-0.5 hover:scale-100 hover:bg-cyan-900 duration-300 h-[150px] rounded-md">
+      <div className="fixed left-0 right-0 bottom-0 w-full flex bg-black transition ease-in-out delay-150 hover:-translate-y-0.5 hover:scale-100 hover:bg-cyan-900 duration-300 h-[150px] rounded-md">
         {musics.map((music: any) =>
           index === music.id ? (
             <div

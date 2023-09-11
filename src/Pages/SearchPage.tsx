@@ -50,19 +50,25 @@ const SearchPage = ({
     <div className="flex flex-col">
       <div>
         <input
+          className="search1"
           onChange={(e) => handleSearch(e)}
           autoFocus
           placeholder="Search"
           type="text"
         />
       </div>
-      <div className="flex space-x-4">
-        {filterData.map((item: any, index: any) => (
-          <button className="w-1/4" onClick={() => handlePlayer(item.id)}>
-            <img src={item.album_img}></img>
-            <h1>{item.name}</h1>
-            <h3>{item.author}</h3>
-          </button>
+      <div className="container w-full flex flex-wrap mt-5 justify-start items-center m-auto ">
+        {filterData.map((music: any, index: any) => (
+          <div className="w-1/5 rounded-md border-2 border-indigo-400 h-[300px] flex flex-col justify-center items-center transition ease-in-out  hover:-translate-y-2 hover:scale-90 hover:bg-cyan-200 duration-200">
+            <button
+              className="w-full flex flex-col items-center"
+              onClick={() => handlePlayer(music.id)}
+            >
+              <img src={music.album_img} className="rounded-md w-2/3"></img>
+              <h1 className="font-bold text-2xl">{music.name}</h1>
+              <h3 className="text-xl">{music.author}</h3>
+            </button>
+          </div>
         ))}
       </div>
     </div>
