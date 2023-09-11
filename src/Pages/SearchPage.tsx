@@ -59,7 +59,7 @@ const SearchPage = ({
       </div>
       <div className="container w-full flex flex-wrap mt-5 justify-start items-center m-auto ">
         {filterData.map((music: any, index: any) => (
-          <div className="w-1/5 rounded-md border-2 border-indigo-400 h-[300px] flex flex-col justify-center items-center transition ease-in-out  hover:-translate-y-2 hover:scale-90 hover:bg-cyan-200 duration-200">
+          <div className="w-1/5 rounded-md border-2 border-indigo-400 h-[300px] flex flex-col justify-center items-center transition ease-in-out  hover:-translate-y-1 hover:scale-100 hover:bg-cyan-200 duration-200">
             <button
               className="w-full flex flex-col items-center"
               onClick={() => handlePlayer(music.id)}

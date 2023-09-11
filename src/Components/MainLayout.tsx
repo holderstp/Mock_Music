@@ -30,7 +30,7 @@ const MainLayout = ({
       <div className="flex flex-col w-full">
         <div className="w-full flex bg-black text-white h-[50px] ">
           <ul
-            className="navbar-nav flex justify-start items-center w-1/2 space-x-5 text-xl  "
+            className="navbar-nav flex justify-start items-center w-1/2 space-x-5 text-xl"
             style={{ marginLeft: "10%" }}
           >
             <li className="nav-item" onClick={() => clickHome()}>
@@ -46,11 +46,11 @@ const MainLayout = ({
             <button
               onMouseOver={handleMouseOver}
               onMouseOut={handleMouseOut}
-              className=" absolute top-[11px] left-[25%] bg-black transition ease-in-out delay-150  hover:translate-x-2 hover:scale-100 duration-200 rounded-md"
+              className=" absolute top-[11px] left-[25%] bg-black transition ease-in-out delay-150 hover:translate-x-2 hover:scale-100 duration-200 rounded-md z-10"
             >
               Genres
               {isShown && (
-                <ul className="space-y-2 mt-3 p-2 bg-gray-500 ">
+                <ul className="space-y-2 mt-3 p-2 bg-black">
                   <li className="nav-item" onClick={() => clickGenres()}>
                     <NavLink to="/main/genres/beats">Beats</NavLink>
                   </li>
@@ -75,9 +75,15 @@ const MainLayout = ({
             </button>
           </ul>
 
-          <div className="user w-1/2 ">aaa</div>
+          <div className="user w-1/2 flex justify-start items-center space-x-5 text-xl">
+            <button>
+              <div>Login</div>
+            </button>
+            <button>
+              <div>Sign Up</div>
+            </button>
+          </div>
         </div>
-
         <div className="w-full">
           <Outlet />
         </div>

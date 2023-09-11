@@ -16,6 +16,7 @@ import { IFavoriteItem } from "./types/favoriteType";
 function App() {
   const [isPlaying, setIsplaying] = useState(false);
   const [index, setIndex] = useState(0);
+  //
   const [id, setId] = useState<string>("");
   const [isFull, setIsFull] = useState<boolean>(false);
   const [isSearch, setIsSearch] = useState<boolean>(false);
@@ -62,7 +63,8 @@ function App() {
   };
   // favorite
   const handleFavorite = (index: any, i: any) => {
-    const updatedFavorites = [...favoriteList]; // Create a copy of favoriteList
+    const updatedFavorites = [...favoriteList];
+    // Create a copy of favoriteList
     // Update the favorite status of the selected music item
     updatedFavorites[0][i].favorite = !index;
     // console.log("1109", updatedFavorites[0][i]);
