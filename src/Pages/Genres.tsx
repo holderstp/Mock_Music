@@ -8,7 +8,9 @@ const Genres = ({ handlePlayer }: GenresProps) => {
   const params = useParams();
   console.log(params.gen);
   //Genres Data
-  const genresData = musics.filter((music: any) => params.gen == music.genre);
+  const genresData = musics.filter(
+    (music: any) => params.gen?.toLowerCase() == music.genre.toLowerCase()
+  );
   console.log(genresData);
   return (
     <div className="flex flex-col items-center justify-start transform-gpu ">

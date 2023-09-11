@@ -5,7 +5,8 @@ export const musics = [
         genre: 'Beats',
         audio: '../music/both-of-us.mp3',
         album_img: '../imgs/birds.png',
-        id: '1'
+        id: '1',
+        favorite: false,
     },
     {
         name: 'Slow Motion',
@@ -13,7 +14,8 @@ export const musics = [
         genre: 'Ambient',
         audio: '../music/slowmotion.mp3',
         album_img: 'https://cdn.bensound.com/image/cover/slowmotion.webp',
-        id: '2'
+        id: '2',
+        favorite: true,
     },
     {
         name: 'Lofi Study',
@@ -21,7 +23,8 @@ export const musics = [
         genre: 'Beats',
         audio: '../music/lofi-study.mp3',
         album_img: '../imgs/lofi-study.png',
-        id: '3'
+        id: '3',
+        favorite: false,
     },
     {
         name: 'Into The Night',
@@ -29,7 +32,8 @@ export const musics = [
         genre: 'Eletronic',
         audio: '../music/into-the-night.mp3',
         album_img: '../imgs/intothenight.png',
-        id: '4'
+        id: '4',
+        favorite: false,
     },
     {
         name: 'Acoustic',
@@ -37,7 +41,8 @@ export const musics = [
         genre: 'Ambient',
         audio: '../music/acoustic-motivation.mp3',
         album_img: 'https://cdn.bensound.com/image/cover/newdawn.webp',
-        id: '5'
+        id: '5',
+        favorite: true,
     },
     {
         name: 'Better Days',
@@ -45,7 +50,8 @@ export const musics = [
         genre: 'Ambient',
         audio: '../music/betterdays.mp3',
         album_img: 'https://cdn.bensound.com/image/cover/betterdays.webp',
-        id: '6'
+        id: '6',
+        favorite: false,
     },
     {
         name: 'Spirit Blossom',
@@ -53,7 +59,8 @@ export const musics = [
         genre: 'Beats',
         audio: '../music/spirit-blossom.mp3',
         album_img: '../imgs/spirit.png',
-        id: '7'
+        id: '7',
+        favorite: true,
     },
     {
         name: 'The Introvert',
@@ -61,7 +68,8 @@ export const musics = [
         genre: 'Classic',
         audio: '../music/the-introvert.mp3',
         album_img: '../imgs/piano.png',
-        id: '8'
+        id: '8',
+        favorite: true,
     },
     {
         name: 'In My Heart',
@@ -69,7 +77,8 @@ export const musics = [
         genre: 'Classic',
         audio: '../music/you-live-in-my-heart.mp3',
         album_img: '../imgs/youliveinmyheart.png',
-        id: '9'
+        id: '9',
+        favorite: false,
     },
     {
         name: 'Ta đã từng yêu nhau chưa',
@@ -77,7 +86,8 @@ export const musics = [
         genre: 'Love',
         audio: '../music/TaDaTungYeuNhauChua-Hao-6248598.mp3',
         album_img: '../imgs/tadatungyeunhauchua.jpg',
-        id: '10'
+        id: '10',
+        favorite: false,
     },
     {
         name: 'Có khóc cũng thế thôi',
@@ -85,7 +95,8 @@ export const musics = [
         genre: 'Love',
         audio: '../music/CoKhocCungTheThoi-Hao-8373914.mp3',
         album_img: '../imgs/ckctt.jpg',
-        id: '11'
+        id: '11',
+        favorite: true,
     },
     {
         name: 'Không còn em',
@@ -94,6 +105,7 @@ export const musics = [
         audio: '../music/khong-con-em-madihu.mp3',
         album_img: '../imgs/1689913184313_640.jpg',
         id: '12',
+        favorite: true,
        
     },
     {
@@ -102,7 +114,8 @@ export const musics = [
         genre: 'Rap',
         audio: '../music/NgayTanLiveAtKong-DsK-5412351.mp3',
         album_img: '../imgs/maxresdefault.jpg',
-        id: '13'
+        id: '13',
+        favorite: true,
     },
     
 

@@ -52,23 +52,23 @@ const MainLayout = ({
               {isShown && (
                 <ul className="space-y-2 mt-3 p-2 bg-gray-500 ">
                   <li className="nav-item" onClick={() => clickGenres()}>
-                    <NavLink to="/main/genres/Beats">Beats</NavLink>
+                    <NavLink to="/main/genres/beats">Beats</NavLink>
                   </li>
 
                   <li className="nav-item" onClick={() => clickGenres()}>
-                    <NavLink to="/main/genres/Ambient">Ambient</NavLink>
+                    <NavLink to="/main/genres/ambient">Ambient</NavLink>
                   </li>
                   <li className="nav-item" onClick={() => clickGenres()}>
-                    <NavLink to="/main/genres/Eletronic">Eletronic</NavLink>
+                    <NavLink to="/main/genres/eletronic">Eletronic</NavLink>
                   </li>
                   <li className="nav-item" onClick={() => clickGenres()}>
-                    <NavLink to="/main/genres/Classic">Classic</NavLink>
+                    <NavLink to="/main/genres/classic">Classic</NavLink>
                   </li>
                   <li className="nav-item" onClick={() => clickGenres()}>
-                    <NavLink to="/main/genres/Love">Love</NavLink>
+                    <NavLink to="/main/genres/love">Love</NavLink>
                   </li>
                   <li className="nav-item" onClick={() => clickGenres()}>
-                    <NavLink to="/main/genres/Rap">Rap</NavLink>
+                    <NavLink to="/main/genres/rap">Rap</NavLink>
                   </li>
                 </ul>
               )}

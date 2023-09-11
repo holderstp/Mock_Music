@@ -11,6 +11,7 @@ import { musics } from "./data/data";
 import { HomePage } from "./Pages/HomePage";
 import Genres from "./Pages/Genres";
 import Like from "./Pages/Like";
+import { IFavoriteItem } from "./types/favoriteType";
 
 function App() {
   const [isPlaying, setIsplaying] = useState(false);
@@ -22,6 +23,8 @@ function App() {
   const [search, setSearch] = useState<string>("");
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
   const [isSidebar, setIsSidebar] = useState<boolean>(false);
+  const [isFavorite, setIsfavotite] = useState<boolean>(false);
+  const [favoriteList, setFavoriteList] = useState([musics]);
   // search Data
   const filterData = musics.filter(
     (music) =>
@@ -29,7 +32,11 @@ function App() {
       search === music.author.toLowerCase() ||
       search === music.genre.toLowerCase()
   );
-  ///
+  /// favorite data
+
+  const favoriteData = favoriteList[0].filter(
+    (music) => music.favorite === true
+  );
 
   const handlePlayer = (index: any) => {
     setId(index);
@@ -53,8 +60,21 @@ function App() {
   const clickHome = () => {
     setIsSearch(false);
   };
+  // favorite
+  const handleFavorite = (index: any, i: any) => {
+    const updatedFavorites = [...favoriteList]; // Create a copy of favoriteList
+    // Update the favorite status of the selected music item
+    updatedFavorites[0][i].favorite = !index;
+    // console.log("1109", updatedFavorites[0][i]);
 
+    setFavoriteList(updatedFavorites);
+    setIsfavotite(!isFavorite);
+  };
   ///
+  const handlePlayFavorite = (index: any) => {
+    setId(index);
+    setIsplaying(true);
+  };
   const pathname = window.location.pathname; //returns the current url minus the domain name
   console.log(pathname);
   if (pathname === "/") {
@@ -78,6 +98,8 @@ function App() {
                   windowWidth={windowWidth}
                   filterData={filterData}
                   isSearch={isSearch}
+                  isFavorite={isFavorite}
+                  handleFavorite={handleFavorite}
                 />
               }
             >
@@ -108,7 +130,15 @@ function App() {
                     />
                   }
                 ></Route>
-                <Route path="/main/like" element={<Like />}></Route>
+                <Route
+                  path="/main/like"
+                  element={
+                    <Like
+                      favoriteData={favoriteData}
+                      handlePlayer={handlePlayFavorite}
+                    />
+                  }
+                ></Route>
                 <Route
                   path="/main/genres/:gen"
                   element={<Genres handlePlayer={handlePlayerGenres} />}
@@ -143,7 +173,15 @@ function App() {
                   />
                 }
               ></Route>
-              <Route path="/main/like" element={<Like />}></Route>
+              <Route
+                path="/main/like"
+                element={
+                  <Like
+                    favoriteData={favoriteData}
+                    handlePlayer={handlePlayFavorite}
+                  />
+                }
+              ></Route>
               <Route
                 path="/main/genres/:gen"
                 element={<Genres handlePlayer={handlePlayerGenres} />}

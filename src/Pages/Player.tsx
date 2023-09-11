@@ -14,6 +14,8 @@ import {
   VolumeOn,
 } from "../FaIcons/index";
 import ListSearch from "../Components/ListSearch";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   isSearch: boolean;
@@ -23,6 +25,8 @@ interface Props {
   setIsFull: (e: boolean) => void;
   windowWidth: number;
   filterData: any;
+  isFavorite: any;
+  handleFavorite: (index: any, i: any) => void;
 }
 const Player = ({
   isSearch,
@@ -32,6 +36,8 @@ const Player = ({
   isFull,
   windowWidth,
   filterData,
+  isFavorite,
+  handleFavorite,
 }: Props) => {
   const params = useParams();
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
@@ -44,6 +50,7 @@ const Player = ({
   const audioTag = useRef<HTMLAudioElement | any>(null);
   const progressBar = useRef<HTMLInputElement | any>(null);
   const animationRef = useRef<HTMLAudioElement | any>(null);
+  //rerender
   useEffect(() => {
     const awaitFunction = () => {
       console.log(index);
@@ -166,7 +173,7 @@ const Player = ({
   return (
     <>
       <div className="fixed left-0 right-0 bottom-0 w-full flex bg-black transition ease-in-out delay-150 hover:-translate-y-0.5 hover:scale-100 hover:bg-cyan-900 duration-300 h-[150px] rounded-md">
-        {musics.map((music: any) =>
+        {musics.map((music: any, i: any) =>
           index === music.id ? (
             <div
               onClick={() => setIsFull(windowWidth <= 820 && !isFull)}
@@ -243,6 +250,23 @@ const Player = ({
                     <button onClick={skipForward}>
                       <SkipForward />
                     </button>
+                    {isFavorite ? (
+                      <button onClick={() => handleFavorite(music.favorite, i)}>
+                        <FontAwesomeIcon
+                          icon={faHeart}
+                          size="2xl"
+                          style={{ color: "red" }}
+                        />
+                      </button>
+                    ) : (
+                      <button onClick={() => handleFavorite(music.favorite, i)}>
+                        <FontAwesomeIcon
+                          icon={faHeart}
+                          size="2xl"
+                          style={{ color: "white" }}
+                        />
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
