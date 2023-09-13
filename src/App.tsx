@@ -12,6 +12,8 @@ import { HomePage } from "./Pages/HomePage";
 import Genres from "./Pages/Genres";
 import Like from "./Pages/Like";
 import { IFavoriteItem } from "./types/favoriteType";
+import Login from "./Components/Login";
+import { users } from "./data/user";
 
 function App() {
   const [isPlaying, setIsplaying] = useState(false);
@@ -26,6 +28,11 @@ function App() {
   const [isSidebar, setIsSidebar] = useState<boolean>(false);
   const [isFavorite, setIsfavotite] = useState<boolean>(false);
   const [favoriteList, setFavoriteList] = useState([musics]);
+  const [onModalLogin, setOnModalLogin] = useState(false);
+  const [islogin, setIslogin] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginSTT, setloginSTT] = useState(false);
   // search Data
   const filterData = musics.filter(
     (music) =>
@@ -34,6 +41,10 @@ function App() {
       search === music.genre.toLowerCase()
   );
   /// favorite data
+
+  // verify user
+  let newUsers = [...users];
+  console.log("user", newUsers);
 
   const favoriteData = favoriteList[0].filter(
     (music) => music.favorite === true
@@ -62,8 +73,38 @@ function App() {
     setIsSearch(false);
   };
   // favorite
+  const handleLogin = () => {
+    setOnModalLogin(true);
+  };
+  const handleOffLogin = () => {
+    console.log("offlogin");
+    setOnModalLogin(false);
+  };
+  const handleUserName = (e: any) => {
+    setUserName(e.target.value);
+  };
+  const handlePassWord = (e: any) => {
+    setPassword(e.target.value);
+  };
+  const handleOnSubmit = (event: any) => {
+    event.preventDefault();
+    validateFormLogin();
+  };
+  const validateFormLogin = () => {
+    newUsers.forEach((newUser) => {
+      console.log(userName);
+      console.log(password);
+      console.log("username", newUser.userName);
+      console.log("password", newUser.password);
+      if (newUser.userName === userName && newUser.password === password) {
+        setOnModalLogin(false);
+        setloginSTT(true);
+      } else return;
+    });
+  };
+
   const handleFavorite = (index: any, i: any) => {
-    const updatedFavorites = [...favoriteList];
+    let updatedFavorites = [...favoriteList];
     // Create a copy of favoriteList
     // Update the favorite status of the selected music item
     updatedFavorites[0][i].favorite = !index;
@@ -113,6 +154,7 @@ function App() {
                     clickGenres={clickHome}
                     clickLike={clickHome}
                     clickHome={clickHome}
+                    handleLogin={handleLogin}
                   />
                 }
               >
@@ -156,6 +198,7 @@ function App() {
                   clickGenres={clickHome}
                   clickLike={clickHome}
                   clickHome={clickHome}
+                  handleLogin={handleLogin}
                 />
               }
             >
@@ -190,9 +233,19 @@ function App() {
               ></Route>
             </Route>
           )}
-          )
+          ){/* <Route path="/login" element={<Login />}></Route> */}
         </Routes>
       </BrowserRouter>
+      {onModalLogin ? (
+        <Login
+          handleOffLogin={handleOffLogin}
+          handleUserName={handleUserName}
+          handlePassWord={handlePassWord}
+          handleOnSubmit={handleOnSubmit}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

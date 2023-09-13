@@ -6,6 +6,7 @@ interface LayoutProps {
   clickHome: () => void;
   clickLike: () => void;
   clickGenres: () => void;
+  handleLogin: () => void;
 }
 
 const MainLayout = ({
@@ -13,6 +14,7 @@ const MainLayout = ({
   clickHome,
   clickLike,
   clickGenres,
+  handleLogin,
 }: LayoutProps) => {
   const [isShown, setIsShown] = useState(false);
 
@@ -27,30 +29,39 @@ const MainLayout = ({
   };
   return (
     <>
-      <div className="flex flex-col w-full">
-        <div className="w-full flex bg-black text-white h-[50px] ">
+      <div className="flex flex-col w-full ">
+        <div className="w-full flex bg-black text-white h-[50px] p-4 z-50">
           <ul
-            className="navbar-nav flex justify-start items-center w-1/2 space-x-5 text-xl"
-            style={{ marginLeft: "10%" }}
+            className="navbar-nav flex justify-start items-center w-1/2 space-x-5 text-xl z-50 "
+            // style={{ marginLeft: "10%" }}
           >
-            <li className="nav-item" onClick={() => clickHome()}>
+            <li
+              className="nav-item transition ease-in-out hover:-translate-y-1 hover:scale-100 duration-200"
+              onClick={() => clickHome()}
+            >
               <NavLink to="/main/home">Home Page</NavLink>
             </li>
-            <li className="nav-item" onClick={() => clickSearch()}>
+            <li
+              className="nav-item transition ease-in-out hover:-translate-y-1 hover:scale-100 duration-200"
+              onClick={() => clickSearch()}
+            >
               <NavLink to="/main/search">Search</NavLink>
             </li>
-            <li className="nav-item" onClick={() => clickLike()}>
+            <li
+              className="nav-item transition ease-in-out hover:-translate-y-1 hover:scale-100 duration-200"
+              onClick={() => clickLike()}
+            >
               <NavLink to="/main/like">Favorite</NavLink>
             </li>
             {/* genres */}
-            <button
+            <li
               onMouseOver={handleMouseOver}
               onMouseOut={handleMouseOut}
-              className=" absolute top-[11px] left-[25%] bg-black transition ease-in-out delay-150 hover:translate-x-2 hover:scale-100 duration-200 rounded-md z-10"
+              className=" relative bg-black transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-200 rounded-md "
             >
               Genres
               {isShown && (
-                <ul className="space-y-2 mt-3 p-2 bg-black">
+                <ul className="space-y-2 absolute bg-black rounded-md p-2 mt-2">
                   <li className="nav-item" onClick={() => clickGenres()}>
                     <NavLink to="/main/genres/beats">Beats</NavLink>
                   </li>
@@ -72,19 +83,29 @@ const MainLayout = ({
                   </li>
                 </ul>
               )}
-            </button>
+            </li>
           </ul>
 
-          <div className="user w-1/2 flex justify-start items-center space-x-5 text-xl">
-            <button>
+          <div className="user w-1/2 flex justify-end items-center space-x-5 text-xl ">
+            <button
+              className="transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-200"
+              onClick={() => handleLogin()}
+            >
+              Login
+            </button>
+            <button className="transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-200">
+              Sign Up
+            </button>
+
+            {/* <button className="transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-200">
               <div>Login</div>
             </button>
-            <button>
+            <button className="transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-200">
               <div>Sign Up</div>
-            </button>
+            </button> */}
           </div>
         </div>
-        <div className="w-full">
+        <div className="w-full p-4">
           <Outlet />
         </div>
       </div>
