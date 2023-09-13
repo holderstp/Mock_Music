@@ -26,7 +26,8 @@ interface Props {
   windowWidth: number;
   filterData: any;
   isFavorite: any;
-  handleFavorite: (index: any, i: any) => void;
+  handleOffFavorite: (index: any, i: any) => void;
+  handleOnFavorite: (index: any, i: any) => void;
 }
 const Player = ({
   isSearch,
@@ -37,7 +38,8 @@ const Player = ({
   windowWidth,
   filterData,
   isFavorite,
-  handleFavorite,
+  handleOffFavorite,
+  handleOnFavorite,
 }: Props) => {
   const params = useParams();
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
@@ -53,7 +55,7 @@ const Player = ({
   //rerender
   useEffect(() => {
     const awaitFunction = () => {
-      console.log(index);
+      // console.log(index);
       if (index !== "") {
         console.log(audioTag);
         if (isPlaying && audioTag.current && audioTag.current !== null) {
@@ -172,7 +174,7 @@ const Player = ({
   };
   return (
     <>
-      <div className="fixed left-0 right-0 bottom-0 w-full flex bg-black transition ease-in-out delay-10 hover:-translate-y-0.5 hover:scale-100 hover:bg-cyan-900 duration-200 h-[150px] rounded-md z-10">
+      <div className="fixed left-0 right-0 bottom-0 w-full  bg-black transition ease-in-out delay-10 hover:-translate-y-0.5 hover:scale-100 hover:bg-cyan-900 duration-200 h-[150px] rounded-md z-10">
         {musics.map((music: any, i: any) =>
           index === music.id ? (
             <div
@@ -251,7 +253,9 @@ const Player = ({
                       <SkipForward />
                     </button>
                     {isFavorite ? (
-                      <button onClick={() => handleFavorite(music.favorite, i)}>
+                      <button
+                        onClick={() => handleOffFavorite(music.favorite, i)}
+                      >
                         <FontAwesomeIcon
                           icon={faHeart}
                           size="2xl"
@@ -259,7 +263,9 @@ const Player = ({
                         />
                       </button>
                     ) : (
-                      <button onClick={() => handleFavorite(music.favorite, i)}>
+                      <button
+                        onClick={() => handleOnFavorite(music.favorite, i)}
+                      >
                         <FontAwesomeIcon
                           icon={faHeart}
                           size="2xl"

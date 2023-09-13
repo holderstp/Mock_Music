@@ -14,6 +14,7 @@ import Like from "./Pages/Like";
 import { IFavoriteItem } from "./types/favoriteType";
 import Login from "./Components/Login";
 import { users } from "./data/user";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const [isPlaying, setIsplaying] = useState(false);
@@ -33,6 +34,12 @@ function App() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [loginSTT, setloginSTT] = useState(false);
+  const [loginInfo, setloginInfo] = useState({
+    avatar: "avatar",
+    userName: "userName",
+
+    password: "password",
+  });
   // search Data
   const filterData = musics.filter(
     (music) =>
@@ -45,11 +52,9 @@ function App() {
   // verify user
   let newUsers = [...users];
   console.log("user", newUsers);
-
   const favoriteData = favoriteList[0].filter(
     (music) => music.favorite === true
   );
-
   const handlePlayer = (index: any) => {
     setId(index);
 
@@ -72,9 +77,21 @@ function App() {
   const clickHome = () => {
     setIsSearch(false);
   };
+  const clickLike = () => {
+    setIsSearch(false);
+    if (loginSTT) {
+      setloginSTT(true);
+    } else {
+      setOnModalLogin(true);
+    }
+  };
   // favorite
   const handleLogin = () => {
     setOnModalLogin(true);
+  };
+  const handleLogOut = () => {
+    setOnModalLogin(false);
+    setloginSTT(false);
   };
   const handleOffLogin = () => {
     console.log("offlogin");
@@ -91,27 +108,42 @@ function App() {
     validateFormLogin();
   };
   const validateFormLogin = () => {
-    newUsers.forEach((newUser) => {
+    newUsers.forEach((newUser, index) => {
       console.log(userName);
       console.log(password);
       console.log("username", newUser.userName);
       console.log("password", newUser.password);
       if (newUser.userName === userName && newUser.password === password) {
+        setloginInfo({
+          avatar: newUser.avatar,
+          userName: userName,
+          password: password,
+        });
         setOnModalLogin(false);
         setloginSTT(true);
       } else return;
     });
   };
 
-  const handleFavorite = (index: any, i: any) => {
+  const handleOnFavorite = (index: any, i: any) => {
+    let updatedFavorites = [...favoriteList];
+    console.log("indexxxxx", typeof index);
+    // Create a copy of favoriteList
+    // Update the favorite status of the selected music item
+    updatedFavorites[0][i].favorite = !index;
+    // console.log("1109", updatedFavorites[0][i]);
+    setFavoriteList(updatedFavorites);
+
+    setIsfavotite(updatedFavorites[0][i].favorite);
+  };
+  const handleOffFavorite = (index: any, i: any) => {
     let updatedFavorites = [...favoriteList];
     // Create a copy of favoriteList
     // Update the favorite status of the selected music item
     updatedFavorites[0][i].favorite = !index;
     // console.log("1109", updatedFavorites[0][i]);
-
     setFavoriteList(updatedFavorites);
-    setIsfavotite(!isFavorite);
+    setIsfavotite(updatedFavorites[0][i].favorite);
   };
   ///
   const handlePlayFavorite = (index: any) => {
@@ -124,6 +156,9 @@ function App() {
     window.location.href = "/main/home";
   }
 
+  useEffect(() => {
+    // window.location.href = "/main/home";
+  }, [loginSTT, onModalLogin]);
   return (
     <div className="h-screen">
       <BrowserRouter>
@@ -142,7 +177,8 @@ function App() {
                   filterData={filterData}
                   isSearch={isSearch}
                   isFavorite={isFavorite}
-                  handleFavorite={handleFavorite}
+                  handleOnFavorite={handleOnFavorite}
+                  handleOffFavorite={handleOffFavorite}
                 />
               }
             >
@@ -152,15 +188,25 @@ function App() {
                   <MainLayout
                     clickSearch={clickSearch}
                     clickGenres={clickHome}
-                    clickLike={clickHome}
+                    clickLike={clickLike}
                     clickHome={clickHome}
                     handleLogin={handleLogin}
+                    loginStt={loginSTT}
+                    loginInfo={loginInfo}
+                    handleLogOut={handleLogOut}
                   />
                 }
               >
                 <Route
                   path="/main/home"
-                  element={<HomePage handlePlayer={handlePlayer} />}
+                  element={
+                    <HomePage
+                      handlePlayer={handlePlayer}
+                      isFavorite={isFavorite}
+                      handleOnFavorite={handleOnFavorite}
+                      handleOffFavorite={handleOffFavorite}
+                    />
+                  }
                 ></Route>
                 <Route
                   path="/main/:name"
@@ -180,6 +226,7 @@ function App() {
                     <Like
                       favoriteData={favoriteData}
                       handlePlayer={handlePlayFavorite}
+                      loginStt={loginSTT}
                     />
                   }
                 ></Route>
@@ -196,15 +243,25 @@ function App() {
                 <MainLayout
                   clickSearch={clickSearch}
                   clickGenres={clickHome}
-                  clickLike={clickHome}
+                  clickLike={clickLike}
                   clickHome={clickHome}
                   handleLogin={handleLogin}
+                  loginStt={loginSTT}
+                  loginInfo={loginInfo}
+                  handleLogOut={handleLogOut}
                 />
               }
             >
               <Route
                 path="/main/home"
-                element={<HomePage handlePlayer={handlePlayer} />}
+                element={
+                  <HomePage
+                    handlePlayer={handlePlayer}
+                    isFavorite={isFavorite}
+                    handleOnFavorite={handleOnFavorite}
+                    handleOffFavorite={handleOffFavorite}
+                  />
+                }
               ></Route>
               <Route
                 path="/main/:name"
@@ -224,6 +281,7 @@ function App() {
                   <Like
                     favoriteData={favoriteData}
                     handlePlayer={handlePlayFavorite}
+                    loginStt={loginSTT}
                   />
                 }
               ></Route>

@@ -16,7 +16,7 @@ const Genres = ({ handlePlayer }: GenresProps) => {
     <div className="flex flex-col items-center justify-start transform-gpu ">
       <div className="container w-full flex flex-wrap mt-5 justify-start items-center m-auto ">
         {genresData.map((data: any, index: any) => (
-          <div className="w-1/5 rounded-md border-2 border-indigo-400 h-[300px] flex flex-col justify-center items-center transition ease-in-out  hover:-translate-y-1 hover:scale-100 hover:bg-cyan-200 duration-200">
+          <div className="w-1/5 rounded-md border-2 border-indigo-400 h-[300px] flex flex-col justify-center items-center transition ease-in-out  hover:-translate-y-1 hover:scale-100 hover:bg-cyan-200 duration-200  md:w-1/3 sm:w-1/2 xl:w-1/4">
             <button
               className="w-full flex flex-col items-center"
               onClick={() => handlePlayer(data.id)}
