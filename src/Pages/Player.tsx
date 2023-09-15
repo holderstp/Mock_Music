@@ -26,8 +26,8 @@ interface Props {
   windowWidth: number;
   filterData: any;
   isFavorite: any;
-  handleOffFavorite: (index: any, i: any) => void;
-  handleOnFavorite: (index: any, i: any) => void;
+  handleOffFavorite: (favorite: any, index: any) => void;
+  handleOnFavorite: (favorite: any, index: any) => void;
 }
 const Player = ({
   isSearch,
@@ -117,7 +117,7 @@ const Player = ({
       alert("Choose a song!");
     } else if (isRandom) {
       skipRandom();
-    } else if (index === "13") {
+    } else if (index === musics.length.toString()) {
       setId("1");
     } else {
       const idNum = parseInt(index);
@@ -128,19 +128,17 @@ const Player = ({
   // Skip Random
   const skipRandom = () => {
     const idNum = parseInt(index);
-    const randomNum = Math.floor(Math.random() * 9);
-    if (randomNum === 0 || randomNum === idNum) {
-      const newNum = randomNum + 1;
-      setId(newNum.toString());
-    } else {
-      setId(randomNum.toString());
-    }
+    const randomNum = Math.floor(Math.random() * musics.length);
+
+    setId(randomNum.toString());
+    console.log("random", randomNum);
   };
   // Skip Back
   const skipBack = () => {
-    console.log("ahihi");
     if (index === "") {
       alert("Choose a song!");
+    } else if (index === "1") {
+      setId(musics.length.toString());
     } else {
       const idNum = parseInt(index);
       const newId = idNum - 1;
@@ -179,13 +177,16 @@ const Player = ({
           index === music.id ? (
             <div
               onClick={() => setIsFull(windowWidth <= 820 && !isFull)}
-              className="flex justify-start items-center w-full"
+              className="md:flex justify-start items-center w-full"
               key={music.id}
             >
               {!isFull ? (
-                <div className="flex justify-center items-center w-1/3">
-                  <div className="w-1/2 ml-3 ">
-                    <img src={music.album_img} className="rounded-2xl" />
+                <div className="md:flex hidden justify-center items-center w-1/3">
+                  <div className=" m-auto">
+                    <img
+                      src={music.album_img}
+                      className="rounded-full hidden xl:inline-block animate-spin w-[200px] ml-2 mt-2"
+                    />
                   </div>
                   <div className="w-full">
                     <h1 className="font-bold text-2xl w-full text-white">
@@ -200,14 +201,13 @@ const Player = ({
                 ""
               )}
               <audio src={music.audio} ref={audioTag} />
-              <div className="player flex w-full ">
-                <div className="inputButtons flex flex-col w-4/5">
+              <div className="w-full">
+                <div className="inputButtons flex-col w-full">
                   {isFull || windowWidth >= 830 ? (
-                    <div className="progressBar flex justify-center items-center">
+                    <div className="progressBar flex justify-center items-center p-2">
                       <p className="PcurrentTime text-white">
                         {calculateDuration(currentTime)}
                       </p>
-
                       <input
                         type="range"
                         className="currentProgress"
@@ -225,7 +225,7 @@ const Player = ({
                   ) : (
                     ""
                   )}
-                  <div className="buttons flex justify-center items-center space-x-[20px] mt-10">
+                  <div className="buttons flex justify-center items-center space-x-[20px] mt-5 md:mt-10 ">
                     {windowWidth >= 830 || isFull ? (
                       <button
                         onClick={() => setIsRandom(!isRandom)}
@@ -278,7 +278,7 @@ const Player = ({
               </div>
 
               {windowWidth > 825 && (
-                <div className="test w-1/5 justify-center items-center space-x-[20px] flex">
+                <div className="justify-center items-center space-x-[20px] hidden md:flex p-4">
                   <button
                     className="volumeButton"
                     onClick={() => setIsMuted(!isMuted)}

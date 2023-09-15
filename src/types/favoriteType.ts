@@ -9,5 +9,12 @@ export interface IFavoriteItem{
 
 
 }
+export interface IUser{
+  avatar: string,
+  userName: string,
+  password: string,
+
+
+}
   
        

@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import MainLayout from "./Components/MainLayout";
 
 import SearchPage from "./Pages/SearchPage";
@@ -15,8 +21,12 @@ import { IFavoriteItem } from "./types/favoriteType";
 import Login from "./Components/Login";
 import { users } from "./data/user";
 import { useNavigate } from "react-router-dom";
+import UpdateUser from "./Components/UpdateUser";
+import ReviewUser from "./Components/ReviewUser";
 
 function App() {
+  // let location = useLocation();
+  // console.log(location);
   const [isPlaying, setIsplaying] = useState(false);
   const [index, setIndex] = useState(0);
   //
@@ -30,16 +40,27 @@ function App() {
   const [isFavorite, setIsfavotite] = useState<boolean>(false);
   const [favoriteList, setFavoriteList] = useState([musics]);
   const [onModalLogin, setOnModalLogin] = useState(false);
+  const [onModalUser, setOnModalUser] = useState(false);
   const [islogin, setIslogin] = useState(false);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [confimPassword, setconfimPassword] = useState("");
+  const [verifyPass, setverifyPass] = useState(false);
   const [loginSTT, setloginSTT] = useState(false);
+  const [signupSTT, setSignupSTT] = useState(false);
+  const [indexUpdate, setIndexUpdate] = useState("");
+  const [onModalReview, setonModalReview] = useState(false);
+  const [reviewUser, setReviewUser] = useState("");
   const [loginInfo, setloginInfo] = useState({
+    index: 0,
     avatar: "avatar",
     userName: "userName",
 
     password: "password",
   });
+
+  ///
+
   // search Data
   const filterData = musics.filter(
     (music) =>
@@ -89,6 +110,11 @@ function App() {
   const handleLogin = () => {
     setOnModalLogin(true);
   };
+  const handleOnSignup = () => {
+    setOnModalLogin(true);
+    setSignupSTT(true);
+  };
+
   const handleLogOut = () => {
     setOnModalLogin(false);
     setloginSTT(false);
@@ -96,6 +122,8 @@ function App() {
   const handleOffLogin = () => {
     console.log("offlogin");
     setOnModalLogin(false);
+
+    setSignupSTT(false);
   };
   const handleUserName = (e: any) => {
     setUserName(e.target.value);
@@ -103,10 +131,45 @@ function App() {
   const handlePassWord = (e: any) => {
     setPassword(e.target.value);
   };
+  const handleConfirmPassWord = (e: any) => {
+    setconfimPassword(e.target.value);
+  };
   const handleOnSubmit = (event: any) => {
     event.preventDefault();
     validateFormLogin();
+    if (signupSTT) {
+      validateFormSignUp();
+    }
   };
+  const handleOnSubmitUpdate = (e: any, image: any) => {
+    e.preventDefault();
+    users[parseInt(indexUpdate)].avatar = image.preview;
+    users[parseInt(indexUpdate)].userName = userName;
+    users[parseInt(indexUpdate)].password = password;
+    setloginInfo({
+      index: index,
+      avatar: image.preview,
+      userName: userName,
+      password: password,
+    });
+    setloginSTT(true);
+    setOnModalUser(false);
+  };
+  // form sign up
+  const validateFormSignUp = () => {
+    if (password === confimPassword) {
+      setverifyPass(true);
+      users.push({
+        avatar: "../imgs/shiba.jpg",
+        userName: userName,
+        password: password,
+      });
+      setOnModalLogin(false);
+    } else {
+      setverifyPass(false);
+    }
+  };
+
   const validateFormLogin = () => {
     newUsers.forEach((newUser, index) => {
       console.log(userName);
@@ -115,6 +178,7 @@ function App() {
       console.log("password", newUser.password);
       if (newUser.userName === userName && newUser.password === password) {
         setloginInfo({
+          index: index,
           avatar: newUser.avatar,
           userName: userName,
           password: password,
@@ -124,10 +188,8 @@ function App() {
       } else return;
     });
   };
-
+  let updatedFavorites = [...favoriteList];
   const handleOnFavorite = (index: any, i: any) => {
-    let updatedFavorites = [...favoriteList];
-    console.log("indexxxxx", typeof index);
     // Create a copy of favoriteList
     // Update the favorite status of the selected music item
     updatedFavorites[0][i].favorite = !index;
@@ -156,11 +218,24 @@ function App() {
     window.location.href = "/main/home";
   }
 
-  useEffect(() => {
-    // window.location.href = "/main/home";
-  }, [loginSTT, onModalLogin]);
+  /// Update user
+  const handleUpdateUser = (index: any) => {
+    setIndexUpdate(index);
+    setOnModalUser(true);
+  };
+  const handleOffUpdate = () => {
+    setOnModalUser(false);
+    setonModalReview(false);
+  };
+  const handleReviewInfo = (index: any) => {
+    setonModalReview(true);
+    setReviewUser(index);
+  };
   return (
-    <div className="h-screen">
+    <div
+      className="bg-gradient-to-r from-gray-400 to-white-500 "
+      // style={{ backgroundImage: `url(${musics[randomNum].album_img})` }}
+    >
       <BrowserRouter>
         <Routes>
           (
@@ -176,7 +251,7 @@ function App() {
                   windowWidth={windowWidth}
                   filterData={filterData}
                   isSearch={isSearch}
-                  isFavorite={isFavorite}
+                  isFavorite={musics[parseInt(id)].favorite}
                   handleOnFavorite={handleOnFavorite}
                   handleOffFavorite={handleOffFavorite}
                 />
@@ -194,6 +269,9 @@ function App() {
                     loginStt={loginSTT}
                     loginInfo={loginInfo}
                     handleLogOut={handleLogOut}
+                    handleOnSignup={handleOnSignup}
+                    handleUpdateUser={handleUpdateUser}
+                    handleReviewInfo={handleReviewInfo}
                   />
                 }
               >
@@ -227,6 +305,8 @@ function App() {
                       favoriteData={favoriteData}
                       handlePlayer={handlePlayFavorite}
                       loginStt={loginSTT}
+                      handleOnFavorite={handleOnFavorite}
+                      handleOffFavorite={handleOffFavorite}
                     />
                   }
                 ></Route>
@@ -249,6 +329,9 @@ function App() {
                   loginStt={loginSTT}
                   loginInfo={loginInfo}
                   handleLogOut={handleLogOut}
+                  handleOnSignup={handleOnSignup}
+                  handleUpdateUser={handleUpdateUser}
+                  handleReviewInfo={handleReviewInfo}
                 />
               }
             >
@@ -282,6 +365,8 @@ function App() {
                     favoriteData={favoriteData}
                     handlePlayer={handlePlayFavorite}
                     loginStt={loginSTT}
+                    handleOnFavorite={handleOnFavorite}
+                    handleOffFavorite={handleOffFavorite}
                   />
                 }
               ></Route>
@@ -300,9 +385,23 @@ function App() {
           handleUserName={handleUserName}
           handlePassWord={handlePassWord}
           handleOnSubmit={handleOnSubmit}
+          signupSTT={signupSTT}
+          handleConfirmPassWord={handleConfirmPassWord}
+          verifyPass={verifyPass}
         />
       ) : (
         ""
+      )}
+      {onModalUser && (
+        <UpdateUser
+          handlePassWord={handlePassWord}
+          handleUserName={handleUserName}
+          handleOnSubmitUpdate={handleOnSubmitUpdate}
+          handleOffUpdate={handleOffUpdate}
+        />
+      )}
+      {onModalReview && (
+        <ReviewUser reviewUser={reviewUser} handleOffUpdate={handleOffUpdate} />
       )}
     </div>
   );

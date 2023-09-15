@@ -1,16 +1,17 @@
 export const users = [
+  
   {
-      avatar:'../imgs/shiba.jpg',
+      avatar:"../imgs/husy.jpg",
       userName:"hieutm32@fpt.com",
       password:"123"
   },
-  { 
-    avatar:'../imgs/ngao.jpg',
+  {
+    avatar:"../imgs/ngao.jpg",
     userName:"phongnv24@fpt.com",
     password:"1234"
   },
   {
-    avatar:'../imgs/husky.jpg',
+    avatar:"../imgs/shiba.jpg",
     userName:"nammh2@fpt.com",
     password:"12345"
   },

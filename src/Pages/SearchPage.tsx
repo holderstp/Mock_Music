@@ -47,19 +47,19 @@ const SearchPage = ({
   console.log(filterData);
 
   return (
-    <div className="flex flex-col">
-      <div>
+    <div className="flex flex-col h-screen">
+      <div className="flex justify-center">
         <input
-          className="search1"
+          className="search1 min-w-[400px]"
           onChange={(e) => handleSearch(e)}
           autoFocus
-          placeholder="Search"
+          placeholder="Search by name, author, genres"
           type="text"
         />
       </div>
-      <div className="container w-full flex flex-wrap mt-5 justify-start items-center m-auto ">
+      <div className="container w-full -z-1 sm:flex flex-wrap mt-5 justify-center items-center h-full ">
         {filterData.map((music: any, index: any) => (
-          <div className="w-1/5 rounded-md border-2 border-indigo-400 h-[300px] flex flex-col justify-center items-center transition ease-in-out  hover:-translate-y-1 hover:scale-100 hover:bg-cyan-200 duration-200  md:w-1/3 sm:w-1/2 xl:w-1/4">
+          <div className="rounded-md border-2 border-black h-[450px] flex flex-col justify-center items-center transition ease-in-out hover:-translate-y-1 hover:bg-cyan-200 min-w-[300px] duration-200 sm:w-1/2 lg:w-1/5 mx-4 my-4">
             <button
               className="w-full flex flex-col items-center"
               onClick={() => handlePlayer(music.id)}

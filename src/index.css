@@ -82,9 +82,11 @@ button:focus-visible {
 }
 body {
   margin: 0;
-  height: 100vh;
+  height: screen;
 }
-
+/* html {
+  height: 100%;
+} */
 .currentProgress {
   --seek-before-width: 0px;
 
