@@ -108,7 +108,6 @@ function App() {
   // const favoriteData = musics.filter((music) => music.favorite === true);
   const handlePlayer = (index: any) => {
     setId(index);
-
     setIsplaying(true);
   };
   const handleSearch = (e: any) => {
