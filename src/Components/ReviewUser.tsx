@@ -10,7 +10,7 @@ const ReviewUser = ({ reviewUser, handleOffUpdate }: IReView) => {
     <div
       id="authentication-modal"
       aria-hidden="true"
-      className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0  max-h-full flex justify-center items-center bg-opacity-25 bg-black transition ease-in-out delay-10  hover:-translate-y-1 hover:scale-110 duration-200 h-screen"
+      className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0  max-h-full flex justify-center items-center bg-opacity-25 bg-black transition ease-in-out delay-10  hover:-translate-y-1 hover:scale-110 duration-200 h-screen "
     >
       <div className="relative w-full max-w-md max-h-full ">
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700 h-[500px] w-[450px] ">

@@ -1,6 +1,20 @@
 import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
+import sound1 from "../public/imgs/greenmusic.png";
+import sound2 from "../public/imgs/soundorg.png";
+import sound3 from "../public/imgs/soundcl.png";
+import sound4 from "../public/imgs/blue.png";
+import sound5 from "../public/imgs/red.png";
+import sound6 from "../public/imgs/swing.gif";
+import sound7 from "../public/imgs/red2.png";
+import sound8 from "../public/imgs/double.png";
+import sound9 from "../public/imgs/music.png";
+import sound10 from "../public/imgs/icons8-audio-wave.gif";
+import sound11 from "../public/imgs/icons8-music-heart.gif";
+import sound12 from "../public/imgs/icons8-music-library.gif";
+import sound13 from "../public/imgs/icons8-microphone.gif";
+
 import "./App.css";
 import {
   BrowserRouter,
@@ -25,6 +39,21 @@ import UpdateUser from "./Components/UpdateUser";
 import ReviewUser from "./Components/ReviewUser";
 
 function App() {
+  let arraySound = [
+    sound1,
+    sound2,
+    sound3,
+    sound4,
+    sound5,
+    sound6,
+    sound7,
+    sound8,
+    sound9,
+    sound10,
+    sound11,
+    sound12,
+    sound13,
+  ];
   // let location = useLocation();
   // console.log(location);
   const [isPlaying, setIsplaying] = useState(false);
@@ -76,6 +105,7 @@ function App() {
   const favoriteData = favoriteList[0].filter(
     (music) => music.favorite === true
   );
+  // const favoriteData = musics.filter((music) => music.favorite === true);
   const handlePlayer = (index: any) => {
     setId(index);
 
@@ -109,6 +139,7 @@ function App() {
   // favorite
   const handleLogin = () => {
     setOnModalLogin(true);
+    setSignupSTT(false);
   };
   const handleOnSignup = () => {
     setOnModalLogin(true);
@@ -143,9 +174,11 @@ function App() {
   };
   const handleOnSubmitUpdate = (e: any, image: any) => {
     e.preventDefault();
+    // thay doi data
     users[parseInt(indexUpdate)].avatar = image.preview;
     users[parseInt(indexUpdate)].userName = userName;
     users[parseInt(indexUpdate)].password = password;
+    // thay doi hien thi
     setloginInfo({
       index: index,
       avatar: image.preview,
@@ -188,6 +221,8 @@ function App() {
       } else return;
     });
   };
+
+  //set favotite ?
   let updatedFavorites = [...favoriteList];
   const handleOnFavorite = (index: any, i: any) => {
     // Create a copy of favoriteList
@@ -231,10 +266,14 @@ function App() {
     setonModalReview(true);
     setReviewUser(index);
   };
+
+  let sound = arraySound[Math.floor(Math.random() * arraySound.length)];
+  console.log("sssssss", sound);
+
   return (
     <div
       className="bg-gradient-to-r from-gray-400 to-white-500 "
-      // style={{ backgroundImage: `url(${musics[randomNum].album_img})` }}
+      style={{ backgroundImage: `url(${sound})` }}
     >
       <BrowserRouter>
         <Routes>

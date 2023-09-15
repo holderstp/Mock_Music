@@ -200,7 +200,7 @@ const Player = ({
               ) : (
                 ""
               )}
-              <audio src={music.audio} ref={audioTag} />
+              <audio src={music.audio} ref={audioTag} controls />
               <div className="w-full">
                 <div className="inputButtons flex-col w-full">
                   {isFull || windowWidth >= 830 ? (
@@ -273,6 +273,14 @@ const Player = ({
                         />
                       </button>
                     )}
+                    <a
+                      href={require("../public/music/AnhKhongHieu-M-TP_38hw9.mp3")}
+                      download="Example-PDF-document"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <button>Download .pdf file</button>
+                    </a>
                   </div>
                 </div>
               </div>
