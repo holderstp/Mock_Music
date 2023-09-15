@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useState } from "react";
+
 import sound1 from "../public/imgs/greenmusic.png";
 import sound2 from "../public/imgs/soundorg.png";
 import sound3 from "../public/imgs/soundcl.png";
