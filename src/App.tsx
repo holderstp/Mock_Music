@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import sound1 from "../public/imgs/greenmusic.png";
 import sound2 from "../public/imgs/soundorg.png";
@@ -15,13 +15,7 @@ import sound12 from "../public/imgs/icons8-music-library.gif";
 import sound13 from "../public/imgs/icons8-microphone.gif";
 
 import "./App.css";
-import {
-  BrowserRouter,
-  Route,
-  Routes,
-  useLocation,
-  useParams,
-} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainLayout from "./Components/MainLayout";
 
 import SearchPage from "./Pages/SearchPage";
@@ -79,6 +73,9 @@ function App() {
   const [indexUpdate, setIndexUpdate] = useState("");
   const [onModalReview, setonModalReview] = useState(false);
   const [reviewUser, setReviewUser] = useState("");
+  const [loginErrorMessage, setLoginErrorMessage] = useState("");
+  const [signupErrorMessage, setSignupErrorMessage] = useState("");
+
   const [loginInfo, setloginInfo] = useState({
     index: 0,
     avatar: "avatar",
@@ -189,6 +186,7 @@ function App() {
   // form sign up
   const validateFormSignUp = () => {
     if (password === confimPassword) {
+      setSignupErrorMessage("");
       setverifyPass(true);
       users.push({
         avatar: "../imgs/shiba.jpg",
@@ -198,6 +196,7 @@ function App() {
       setOnModalLogin(false);
     } else {
       setverifyPass(false);
+      setSignupErrorMessage("Password and confirm password must equal !");
     }
   };
 
@@ -208,6 +207,7 @@ function App() {
       console.log("username", newUser.userName);
       console.log("password", newUser.password);
       if (newUser.userName === userName && newUser.password === password) {
+        setLoginErrorMessage("");
         setloginInfo({
           index: index,
           avatar: newUser.avatar,
@@ -216,9 +216,14 @@ function App() {
         });
         setOnModalLogin(false);
         setloginSTT(true);
-      } else return;
+      } else {
+        setLoginErrorMessage("User name or password incorrect !");
+      }
     });
   };
+  // useEffect(() => {
+  //   validateFormLogin();
+  // }, [loginErrorMessage, islogin]);
 
   //set favotite ?
   let updatedFavorites = [...favoriteList];
@@ -266,12 +271,13 @@ function App() {
   };
 
   let sound = arraySound[Math.floor(Math.random() * arraySound.length)];
-  console.log("sssssss", sound);
+  console.log("radom", sound);
 
   return (
     <div
       className="bg-gradient-to-r from-gray-400 to-white-500 "
-      style={{ backgroundImage: `url(${sound})` }}
+      // style={{ backgroundImage: `url(${sound})` }}
+      style={{ backgroundImage: `${isPlaying ? `url(${sound})` : ""}` }}
     >
       <BrowserRouter>
         <Routes>
@@ -425,6 +431,8 @@ function App() {
           signupSTT={signupSTT}
           handleConfirmPassWord={handleConfirmPassWord}
           verifyPass={verifyPass}
+          loginErrorMessage={loginErrorMessage}
+          signupErrorMessage={signupErrorMessage}
         />
       ) : (
         ""

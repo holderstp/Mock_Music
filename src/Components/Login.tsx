@@ -6,6 +6,8 @@ interface Props {
   handleConfirmPassWord: (e: any) => void;
   signupSTT: any;
   verifyPass: any;
+  loginErrorMessage: any;
+  signupErrorMessage: any;
 }
 
 const Login = ({
@@ -16,6 +18,8 @@ const Login = ({
   handleOnSubmit,
   signupSTT,
   verifyPass,
+  loginErrorMessage,
+  signupErrorMessage,
 }: Props) => {
   return (
     <div
@@ -91,6 +95,12 @@ const Login = ({
                   onChange={(e) => handlePassWord(e)}
                 ></input>
               </div>
+              {!signupSTT && (
+                <div className="h-[30px] ">
+                  <p className="text-rose-900">{loginErrorMessage}</p>
+                </div>
+              )}
+
               {signupSTT && (
                 <div>
                   <label
@@ -139,16 +149,8 @@ const Login = ({
                 </div>
               )}
               {signupSTT && (
-                <div>
-                  {verifyPass
-                    ? // <div className="text-green">
-                      //   Password and Confirm password ok !
-                      // </div>
-                      "ok"
-                    : // <div className="text-red">
-                      //   Password must equal Confirm password !
-                      // </div>
-                      "Ng"}
+                <div className="h-[20px]">
+                  <p className="text-rose-900">{signupErrorMessage}</p>
                 </div>
               )}
 

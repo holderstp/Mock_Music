@@ -183,10 +183,17 @@ const Player = ({
               {!isFull ? (
                 <div className="md:flex hidden justify-center items-center w-1/3">
                   <div className=" m-auto">
-                    <img
-                      src={music.album_img}
-                      className="rounded-full hidden xl:inline-block animate-spin w-[200px] ml-2 mt-2"
-                    />
+                    {isPlaying ? (
+                      <img
+                        src={music.album_img}
+                        className="rounded-full hidden xl:inline-block animate-spin w-[200px] ml-2 mt-2"
+                      />
+                    ) : (
+                      <img
+                        src={music.album_img}
+                        className="rounded-full hidden xl:inline-block w-[200px] ml-2 mt-2"
+                      />
+                    )}
                   </div>
                   <div className="w-full">
                     <h1 className="font-bold text-2xl w-full text-white">
