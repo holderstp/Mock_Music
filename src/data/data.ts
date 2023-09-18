@@ -1,3 +1,5 @@
+import { fa0 } from "@fortawesome/free-solid-svg-icons";
+
 export const musics = [
     {
         name: 'Trái đất tròn',
@@ -145,7 +147,7 @@ export const musics = [
         audio: '../music/AnhKhongHieu-M-TP_38hw9.mp3',
         album_img: '../imgs/sontung.jpg',
         id: '15',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Bạc phận',
@@ -163,7 +165,7 @@ export const musics = [
         audio: '../music/BinhYenNhungPhutGiay-SonTungMTP-4915711.mp3',
         album_img: '../imgs/sontung.jpg',
         id: '17',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Đom đóm',
@@ -181,7 +183,7 @@ export const musics = [
         audio: '../music/EmDungDi-M-TP_3j3w3.mp3',
         album_img: '../imgs/sontung.jpg',
         id: '19',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Hồng nhan',
@@ -190,7 +192,7 @@ export const musics = [
         audio: '../music/HongNhanTruogXuRemix-JackG5R-5950370.mp3',
         album_img: '../imgs/jack.jpg',
         id: '20',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Không phải dạng vừa đâu',
@@ -199,7 +201,7 @@ export const musics = [
         audio: '../music/KhongPhaiDangVuaDau-SonTungMTP-3753840.mp3',
         album_img: '../imgs/sontung.jpg',
         id: '21',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Làm sao em vô tình',
@@ -217,7 +219,7 @@ export const musics = [
         audio: '../music/MdlvInterlude-KayCWxrdieGxxfy-7204209.mp3',
         album_img: '../imgs/van24kright.jpg',
         id: '23',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Một năm mới bình an',
@@ -226,7 +228,7 @@ export const musics = [
         audio: '../music/MotNamMoiBinhAn-SonTungMTP-4315569.mp3',
         album_img: '../imgs/sontung.jpg',
         id: '24',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Nếu lúc đó',
@@ -235,7 +237,7 @@ export const musics = [
         audio: '../music/NeuLucDo-tlinh2pillz-8783613.mp3',
         album_img: '../imgs/van24kright.jpg',
         id: '25',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Nơi đông đúc',
@@ -244,7 +246,7 @@ export const musics = [
         audio: '../music/NoiDongDuc-M-TP_4beqr.mp3',
         album_img: '../imgs/sontung.jpg',
         id: '26',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Vẫn',
@@ -253,7 +255,7 @@ export const musics = [
         audio: '../music/Van24kright.mp3',
         album_img: '../imgs/van24kright.jpg',
         id: '27',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Tan',
@@ -271,7 +273,7 @@ export const musics = [
         audio: '../music/TimLaiBauTroi.mp3',
         album_img: '../imgs/timlaibautroi.jpg',
         id: '29',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Cầu vồng khuyết',
@@ -298,7 +300,7 @@ export const musics = [
         audio: '../music/ConMoBangGia-BangKieu.mp3',
         album_img: '../imgs/conmobang gia.jpg',
         id: '32',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Thương Em Là Điều Anh Không Thể Ngờ',
@@ -316,7 +318,7 @@ export const musics = [
         audio: '../music/Ngay-Mai-Nguoi-Ta-Lay-Chong.mp3',
         album_img: '../imgs/ngaymai-nguoita-laychong.jpg',
         id: '34',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Duyên Phận',
@@ -334,7 +336,7 @@ export const musics = [
         audio: '../music/DapMoCuocTinh-DanNguyen.mp3',
         album_img: '../imgs/dapmocuoctinh.jpg',
         id: '36',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Hoa nở về đêm',
@@ -361,7 +363,7 @@ export const musics = [
         audio: '../music/EmVeKeoTroiMua-LeQuyen.mp3',
         album_img: '../imgs/emvekeomua.jpg',
         id: '39',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Thành phố buồn',
