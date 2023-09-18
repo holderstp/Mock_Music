@@ -50,7 +50,7 @@ const SearchPage = ({
     <div className="flex flex-col h-screen">
       <div className="flex justify-center">
         <input
-          className="search1 min-w-[400px] text-lg "
+          className="search1 min-w-[400px] text-2xl h-[50px] bg-gray-300"
           onChange={(e) => handleSearch(e)}
           autoFocus
           placeholder="Search by name, author, genres"

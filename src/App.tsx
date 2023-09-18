@@ -199,7 +199,9 @@ function App() {
       setSignupErrorMessage("Password and confirm password must equal !");
     }
   };
-
+  // const handleSetIsplaying=()=>{
+  //   setIsplaying(!isPlaying)
+  // }}
   const validateFormLogin = () => {
     newUsers.forEach((newUser, index) => {
       console.log(userName);
@@ -225,9 +227,13 @@ function App() {
   //   validateFormLogin();
   // }, [loginErrorMessage, islogin]);
 
+  // const handleSetIsplaying=()=>{
+  //   setIsplaying(!isPlaying)
+  // }}
   //set favotite ?
-  let updatedFavorites = [...favoriteList];
+
   const handleOnFavorite = (index: any, i: any) => {
+    let updatedFavorites = [...favoriteList];
     // Create a copy of favoriteList
     // Update the favorite status of the selected music item
     updatedFavorites[0][i].favorite = !index;
@@ -235,6 +241,18 @@ function App() {
     setFavoriteList(updatedFavorites);
 
     setIsfavotite(updatedFavorites[0][i].favorite);
+    // setIsfavotite(!isFavorite);
+  };
+  const handleOnFavoriteHomePage = (index: any, i: any) => {
+    let updatedFavorites = [...favoriteList];
+    // Create a copy of favoriteList
+    // Update the favorite status of the selected music item
+    updatedFavorites[0][i].favorite = !index;
+    // console.log("1109", updatedFavorites[0][i]);
+    setFavoriteList(updatedFavorites);
+
+    setIsfavotite(updatedFavorites[0][i].favorite);
+    // setIsfavotite(!isFavorite);
   };
   const handleOffFavorite = (index: any, i: any) => {
     let updatedFavorites = [...favoriteList];
@@ -244,6 +262,17 @@ function App() {
     // console.log("1109", updatedFavorites[0][i]);
     setFavoriteList(updatedFavorites);
     setIsfavotite(updatedFavorites[0][i].favorite);
+    // setIsfavotite(!isFavorite);
+  };
+  const handleOffFavoriteHomePage = (index: any, i: any) => {
+    let updatedFavorites = [...favoriteList];
+    // Create a copy of favoriteList
+    // Update the favorite status of the selected music item
+    updatedFavorites[0][i].favorite = !index;
+    // console.log("1109", updatedFavorites[0][i]);
+    setFavoriteList(updatedFavorites);
+    setIsfavotite(updatedFavorites[0][i].favorite);
+    // setIsfavotite(!isFavorite);
   };
   ///
   const handlePlayFavorite = (index: any) => {
@@ -272,12 +301,14 @@ function App() {
 
   let sound = arraySound[Math.floor(Math.random() * arraySound.length)];
   console.log("radom", sound);
-
+  const handleSetIsplaying = () => {
+    setIsplaying(!isPlaying);
+  };
   return (
     <div
       className="bg-gradient-to-r from-gray-400 to-white-500 "
       // style={{ backgroundImage: `url(${sound})` }}
-      style={{ backgroundImage: `${isPlaying ? `url(${sound})` : ""}` }}
+      style={{ backgroundImage: `${isPlaying ? `url(${sound5})` : ""}` }}
     >
       <BrowserRouter>
         <Routes>
@@ -297,6 +328,7 @@ function App() {
                   isFavorite={musics[parseInt(id)].favorite}
                   handleOnFavorite={handleOnFavorite}
                   handleOffFavorite={handleOffFavorite}
+                  handleSetIsplaying={handleSetIsplaying}
                 />
               }
             >
@@ -324,8 +356,8 @@ function App() {
                     <HomePage
                       handlePlayer={handlePlayer}
                       isFavorite={isFavorite}
-                      handleOnFavorite={handleOnFavorite}
-                      handleOffFavorite={handleOffFavorite}
+                      handleOnFavorite={handleOnFavoriteHomePage}
+                      handleOffFavorite={handleOffFavoriteHomePage}
                     />
                   }
                 ></Route>
@@ -384,8 +416,8 @@ function App() {
                   <HomePage
                     handlePlayer={handlePlayer}
                     isFavorite={isFavorite}
-                    handleOnFavorite={handleOnFavorite}
-                    handleOffFavorite={handleOffFavorite}
+                    handleOnFavorite={handleOnFavoriteHomePage}
+                    handleOffFavorite={handleOffFavoriteHomePage}
                   />
                 }
               ></Route>

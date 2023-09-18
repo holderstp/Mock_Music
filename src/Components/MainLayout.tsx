@@ -46,8 +46,14 @@ const MainLayout = ({
   const handleMouseOver = () => {
     setIsShown(true);
   };
+  const handleOnClick = () => {
+    setIsShown(!isShown);
+  };
 
   const handleMouseOverUser = () => {
+    setIsShownUser(true);
+  };
+  const handleClickOverUser = () => {
     setIsShownUser(true);
   };
   const handleOpenMenu = () => {
@@ -57,18 +63,18 @@ const MainLayout = ({
   const handleMouseOut = () => {
     setTimeout(() => {
       setIsShown(false);
-    }, 3000);
+    }, 2000);
   };
   const handleMouseOutUser = () => {
     setTimeout(() => {
       setIsShownUser(false);
-    }, 3000);
+    }, 2000);
   };
 
   return (
     <>
       <div className="flex-col w-full h-creen">
-        <div className="w-full flex bg-black text-white h-[60px] p-4 z-50">
+        <div className="w-full flex bg-black text-white h-[60px] p-4 z-50 fixed">
           <ul className="navbar-nav hidden sm:flex justify-start items-center w-1/2 space-x-5 text-xl z-50 ">
             <li
               className="nav-item transition ease-in-out hover:-translate-y-1 hover:scale-100 duration-200"
@@ -89,9 +95,10 @@ const MainLayout = ({
               <NavLink to="/main/like">Favorite</NavLink>
             </button>
             {/* genres */}
-            <li
-              onMouseOver={handleMouseOver}
+            <button
+              // onMouseOver={handleMouseOver}
               onMouseOut={handleMouseOut}
+              onClick={handleOnClick}
               className=" relative bg-black transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-200 rounded-md  "
             >
               Genres
@@ -118,7 +125,7 @@ const MainLayout = ({
                   </li>
                 </ul>
               )}
-            </li>
+            </button>
           </ul>
           <div className="w-1/3 sm:hidden  flex justify-start items-center">
             <button onClick={handleOpenMenu} className="relative">
@@ -210,9 +217,10 @@ const MainLayout = ({
           <div className="user w-2/3 flex justify-end items-center text-xl ">
             {loginStt ? (
               <button
-                onMouseOver={handleMouseOverUser}
+                // onMouseOver={handleMouseOverUser}
                 onMouseOut={handleMouseOutUser}
-                className=" relative bg-black transition ease-in-out hover:scale-105 duration-200 rounded-md w-[300px]"
+                onClick={handleClickOverUser}
+                className=" relative bg-black transition ease-in-out hover:scale-105 duration-200 rounded-md w-[300px] z-50 "
               >
                 <div className="flex justify-center items-center h-[50px]">
                   <img
@@ -279,7 +287,7 @@ const MainLayout = ({
             </button> */}
           </div>
         </div>
-        <div className="w-full px-[10%]">
+        <div className="w-full px-[10%] py-[60px]">
           <Outlet />
         </div>
       </div>

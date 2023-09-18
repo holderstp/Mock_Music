@@ -33,7 +33,7 @@ export function HomePage({
     setpaginateData(result);
   }, [musics, currentPage]);
   return (
-    <div className="flex justify-center items-center  ">
+    <div className="flex justify-center items-center">
       {currentPage > 1 && (
         <div className="paginate flex animate-bounce ">
           <button type="button" onClick={() => setCurrentPage(currentPage - 1)}>

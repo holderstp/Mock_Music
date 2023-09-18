@@ -14,6 +14,9 @@ const ReviewUser = ({ reviewUser, handleOffUpdate }: IReView) => {
     >
       <div className="relative w-full max-w-md max-h-full ">
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700 h-[500px] w-[450px] ">
+          <h3 className="pt-5 text-xl font-medium text-gray-900 dark:text-white">
+            Review User
+          </h3>
           <button
             type="button"
             className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
