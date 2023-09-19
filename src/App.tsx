@@ -169,6 +169,8 @@ function App() {
     users[parseInt(indexUpdate)].password = password;
     // thay doi hien thi
     setloginInfo({
+
+    
       index: index,
       avatar: image.preview,
       userName: userName,
