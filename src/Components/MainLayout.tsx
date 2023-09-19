@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { NavLink, Outlet, useParams, Route } from "react-router-dom";
+import { useState } from "react";
+import { NavLink, Outlet } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -50,9 +50,6 @@ const MainLayout = ({
     setIsShown(!isShown);
   };
 
-  const handleMouseOverUser = () => {
-    setIsShownUser(true);
-  };
   const handleClickOverUser = () => {
     setIsShownUser(true);
   };

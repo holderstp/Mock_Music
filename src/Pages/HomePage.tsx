@@ -27,6 +27,7 @@ export function HomePage({
     const end = currentPage * pageSize;
     const result = musics.slice(start, end);
     setpaginateData(result);
+    setpageSize(8);
   }, [musics, currentPage]);
   return (
     <div className="flex justify-center items-center">

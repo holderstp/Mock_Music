@@ -1,4 +1,4 @@
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { musics } from "../data/data";
 import { useEffect, useRef, useState } from "react";
 // export { default as useAudio } from "./useAudio";
@@ -42,7 +42,6 @@ const Player = ({
   handleOnFavorite,
   handleSetIsplaying,
 }: Props) => {
-  const params = useParams();
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
   const [volume, setVolume] = useState<number>(1);
   const [duration, setDuration] = useState<number>(0);
@@ -128,7 +127,7 @@ const Player = ({
   };
   // Skip Random
   const skipRandom = () => {
-    const idNum = parseInt(index);
+    // const idNum = parseInt(index);
     const randomNum = Math.floor(Math.random() * musics.length);
 
     setId(randomNum.toString());

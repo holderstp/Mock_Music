@@ -1,4 +1,4 @@
-import { fa0 } from "@fortawesome/free-solid-svg-icons";
+
 
 export const musics = [
     {

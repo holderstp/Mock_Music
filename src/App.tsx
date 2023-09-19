@@ -24,10 +24,10 @@ import { musics } from "./data/data";
 import { HomePage } from "./Pages/HomePage";
 import Genres from "./Pages/Genres";
 import Like from "./Pages/Like";
-import { IFavoriteItem } from "./types/favoriteType";
+
 import Login from "./Components/Login";
 import { users } from "./data/user";
-import { useNavigate } from "react-router-dom";
+
 import UpdateUser from "./Components/UpdateUser";
 import ReviewUser from "./Components/ReviewUser";
 
@@ -55,15 +55,13 @@ function App() {
   const [id, setId] = useState<string>("");
   const [isFull, setIsFull] = useState<boolean>(false);
   const [isSearch, setIsSearch] = useState<boolean>(false);
-  const [genre, setGenre] = useState<string>("");
+
   const [search, setSearch] = useState<string>("");
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
-  const [isSidebar, setIsSidebar] = useState<boolean>(false);
   const [isFavorite, setIsfavotite] = useState<boolean>(false);
   const [favoriteList, setFavoriteList] = useState([musics]);
   const [onModalLogin, setOnModalLogin] = useState(false);
   const [onModalUser, setOnModalUser] = useState(false);
-  const [islogin, setIslogin] = useState(false);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [confimPassword, setconfimPassword] = useState("");
@@ -92,7 +90,7 @@ function App() {
   /// favorite data
   // verify user
   let newUsers = [...users];
-  console.log("user", newUsers);
+
   const favoriteData = favoriteList[0].filter(
     (music) => music.favorite === true
   );
@@ -103,6 +101,7 @@ function App() {
   };
   const handleSearch = (e: any) => {
     setSearch(e.target.value);
+    setWindowWidth(window.innerWidth);
   };
   const handlePlayerSearch = (index: any) => {
     setId(index);
@@ -205,6 +204,7 @@ function App() {
       console.log("password", newUser.password);
       if (newUser.userName === userName && newUser.password === password) {
         setLoginErrorMessage("");
+        setIndex(index);
         setloginInfo({
           index: index,
           avatar: newUser.avatar,
