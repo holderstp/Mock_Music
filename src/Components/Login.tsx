@@ -17,7 +17,6 @@ const Login = ({
   handleConfirmPassWord,
   handleOnSubmit,
   signupSTT,
-  verifyPass,
   loginErrorMessage,
   signupErrorMessage,
 }: Props) => {

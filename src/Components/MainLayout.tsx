@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet, useParams, Route } from "react-router-dom";
-import { musics } from "../data/data";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
@@ -63,12 +63,12 @@ const MainLayout = ({
   const handleMouseOut = () => {
     setTimeout(() => {
       setIsShown(false);
-    }, 2000);
+    }, 3000);
   };
   const handleMouseOutUser = () => {
     setTimeout(() => {
       setIsShownUser(false);
-    }, 2000);
+    }, 3000);
   };
 
   return (

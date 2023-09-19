@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { musics } from "../data/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NextPage } from "../FaIcons";
-import {
-  faArrowAltCircleRight,
-  faArrowCircleLeft,
-  faHeart,
-} from "@fortawesome/free-solid-svg-icons";
+
+import { faArrowCircleLeft, faHeart } from "@fortawesome/free-solid-svg-icons";
 interface HomePageProps {
   handlePlayer: (index: any) => void;
   isFavorite: any;
@@ -15,7 +11,7 @@ interface HomePageProps {
 }
 export function HomePage({
   handlePlayer,
-  isFavorite,
+
   handleOnFavorite,
   handleOffFavorite,
 }: HomePageProps) {

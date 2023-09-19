@@ -1,43 +1,17 @@
 import { useParams } from "react-router-dom";
-import { musics } from "../data/data";
-import { useEffect, useState } from "react";
+
 interface Props {
-  // img: string;
-  // name: string;
-  // author: string;
-  // audio: string;
-  // musicId: string;
-  // id: string;
-  // isFull: boolean;
-  // genre: string;
-  // genres: string;
-  // isSearch: boolean;
   isPlaying: boolean;
   filterData: any;
   search: string;
-  // windowWidth: number;
-  // setId: (e: string) => void;
-  // setIsFull: (e: boolean) => void;
   handleSearch: (e: any) => void;
   handlePlayer: (index: any) => void;
 }
 
 const SearchPage = ({
-  // img,
-  // name,
-  // author,
-  // audio,
-  // musicId,
-  // isFull,
-  // id,
-  // genre,
-  // genres,
-  // isSearch,
   filterData,
   isPlaying,
-  search,
-  // windowWidth,
-  // setId,
+
   handleSearch,
   handlePlayer,
 }: Props) => {

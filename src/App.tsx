@@ -80,12 +80,8 @@ function App() {
     index: 0,
     avatar: "avatar",
     userName: "userName",
-
     password: "password",
   });
-
-  ///
-
   // search Data
   const filterData = musics.filter(
     (music) =>
@@ -94,7 +90,6 @@ function App() {
       search === music.genre.toLowerCase()
   );
   /// favorite data
-
   // verify user
   let newUsers = [...users];
   console.log("user", newUsers);
@@ -223,14 +218,6 @@ function App() {
       }
     });
   };
-  // useEffect(() => {
-  //   validateFormLogin();
-  // }, [loginErrorMessage, islogin]);
-
-  // const handleSetIsplaying=()=>{
-  //   setIsplaying(!isPlaying)
-  // }}
-  //set favotite ?
 
   const handleOnFavorite = (index: any, i: any) => {
     let updatedFavorites = [...favoriteList];
@@ -308,7 +295,7 @@ function App() {
     <div
       className="bg-gradient-to-r from-gray-400 to-white-500 "
       // style={{ backgroundImage: `url(${sound})` }}
-      style={{ backgroundImage: `${isPlaying ? `url(${sound5})` : ""}` }}
+      style={{ backgroundImage: `${isPlaying ? `url(${sound6})` : ""}` }}
     >
       <BrowserRouter>
         <Routes>

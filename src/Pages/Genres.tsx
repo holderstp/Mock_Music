@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { musics } from "../data/data";
-import { useEffect } from "react";
-import React, { useState } from "react";
+
+import { useState } from "react";
 interface GenresProps {
   handlePlayer: (index: any) => void;
 }

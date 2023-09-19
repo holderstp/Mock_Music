@@ -1,6 +1,6 @@
 import { Outlet, useParams } from "react-router-dom";
 import { musics } from "../data/data";
-import { HtmlHTMLAttributes, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // export { default as useAudio } from "./useAudio";
 
 import {
@@ -13,7 +13,7 @@ import {
   VolumeOff,
   VolumeOn,
 } from "../FaIcons/index";
-import ListSearch from "../Components/ListSearch";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
@@ -31,13 +31,12 @@ interface Props {
   handleSetIsplaying: () => void;
 }
 const Player = ({
-  isSearch,
   index,
   setId,
   setIsFull,
   isFull,
   windowWidth,
-  filterData,
+
   isFavorite,
   handleOffFavorite,
   handleOnFavorite,
@@ -184,16 +183,16 @@ const Player = ({
             >
               {!isFull ? (
                 <div className="md:flex hidden justify-center items-center w-1/3">
-                  <div className=" m-auto">
+                  <div className=" m-auto ">
                     {isPlaying ? (
                       <img
                         src={music.album_img}
-                        className="rounded-full hidden xl:inline-block animate-spin w-[200px] ml-2 mt-2"
+                        className="rounded-full hidden xl:inline-block  w-[200px] ml-2 mt-2 animation"
                       />
                     ) : (
                       <img
                         src={music.album_img}
-                        className="rounded-full hidden xl:inline-block w-[200px] ml-2 mt-2"
+                        className="rounded-full hidden xl:inline-block w-[200px] ml-2 mt-2 "
                       />
                     )}
                   </div>

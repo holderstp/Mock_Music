@@ -1,6 +1,6 @@
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ChangeEvent, useRef, useState } from "react";
+import { useRef, useState } from "react";
 interface Props {
   handleOnSubmitUpdate: (e: any, img: any) => void;
   handleOffUpdate: () => void;
@@ -73,15 +73,15 @@ const UpdateUser = ({
                   onClick={handleImageClick}
                 >
                   {image ? (
-                    <div className="w-[250px]  mr-5 ">
+                    <div className="w-[250px] mr-5">
                       <img
                         src={URL.createObjectURL(image)}
                         alt="err"
-                        className="rounded-md border-solid border-2 border-black h-[170px]"
+                        className="rounded-md border-solid border-2 border-black h-[150px]"
                       />
                     </div>
                   ) : (
-                    <div className="mt-8 ">
+                    <div className="">
                       <FontAwesomeIcon icon={faCamera} />
                     </div>
                   )}

@@ -44,7 +44,7 @@ export const musics = [
         audio: '../music/Chua-Bao-Gio-Trung-Quan-Idol.mp3',
         album_img: 'https://photo-resize-zmp3.zmdcdn.me/w600_r300x169_jpeg/thumb_video/e/8/e89ee5c2db2fc3fc2afe3b228afcefef_1439532411.jpg',
         id: '4',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Chẳng thể tìm được em',
@@ -62,7 +62,7 @@ export const musics = [
         audio: '../music/Ngay-Mai-Em-Di-Touliver-Mix-Touliver-Le-Hieu-SOOBIN.mp3',
         album_img: 'https://i.ytimg.com/vi/z5Jc7KiTLbs/maxresdefault.jpg',
         id: '6',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Sâu trong em',
@@ -71,7 +71,7 @@ export const musics = [
         audio: '../music/Sau-Trong-Em-Bich-Phuong.mp3',
         album_img: 'https://avatar-ex-swe.nixcdn.com/playlist/2015/04/01/2/4/9/0/1427880222113_500.jpg',
         id: '7',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'In My Heart',
@@ -98,7 +98,7 @@ export const musics = [
         audio: '../music/CoKhocCungTheThoi-Hao-8373914.mp3',
         album_img: 'https://photo-resize-zmp3.zmdcdn.me/w600_r1x1_jpeg/cover/f/c/8/3/fc8391b4e6c05a902d3730bba9e125bb.jpg',
         id: '10',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Không còn em',
@@ -117,7 +117,7 @@ export const musics = [
         audio: '../music/NgayTanLiveAtKong-DsK-5412351.mp3',
         album_img: '../imgs/maxresdefault.jpg',
         id: '12',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Chưa bao giờ',
@@ -126,7 +126,7 @@ export const musics = [
         audio: '../music/ChuaBaoGio-DsK_3ym7f.mp3',
         album_img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8V6sv00gx-mo9zVpxZHZfQxgZ6Wfxn0EegO4PBQdU2O5fIw7JWNpnvRSOqIDAAS6mK9w&usqp=CAU',
         id: '13',
-        favorite: true,
+        favorite: false,
     },
    
 
@@ -147,7 +147,7 @@ export const musics = [
         audio: '../music/AnhKhongHieu-M-TP_38hw9.mp3',
         album_img: '../imgs/sontung.jpg',
         id: '15',
-        favorite: false,
+        favorite: true,
     },
     {
         name: 'Bạc phận',
@@ -156,7 +156,7 @@ export const musics = [
         audio: '../music/BacPhanRemix2019-JackG5RDJFuture-6058030.mp3',
         album_img: '../imgs/jack.jpg',
         id: '16',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Bình yên những phút giây',
@@ -165,7 +165,7 @@ export const musics = [
         audio: '../music/BinhYenNhungPhutGiay-SonTungMTP-4915711.mp3',
         album_img: '../imgs/sontung.jpg',
         id: '17',
-        favorite: false,
+        favorite: true,
     },
     {
         name: 'Đom đóm',
@@ -174,7 +174,7 @@ export const musics = [
         audio: '../music/DomDomLeMonRemix-JackG5R-6898454 (1).mp3',
         album_img: '../imgs/jack.jpg',
         id: '18',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Em đừng đi',
@@ -210,7 +210,7 @@ export const musics = [
         audio: '../music/LamSaoEmVoTinhDemo-JackG5R-5950510.mp3',
         album_img: '../imgs/jack.jpg',
         id: '22',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Mdlv',
@@ -282,7 +282,7 @@ export const musics = [
         audio: '../music/CauVongKhuyet.mp3',
         album_img: '../imgs/cauvongkhuyet.jpg',
         id: '30',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Đừng cố yêu',
@@ -291,7 +291,7 @@ export const musics = [
         audio: '../music/DungCoYeu.mp3',
         album_img: '../imgs/DungCoYeu.jpg',
         id: '31',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Cơn Mơ Băng Giá',
@@ -309,7 +309,7 @@ export const musics = [
         audio: '../music/noophuocthinh1.mp3',
         album_img: '../imgs/nophuocthinh.jpg',
         id: '33',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Ngày Mai Người Ta Lấy Chồng',
@@ -327,7 +327,7 @@ export const musics = [
         audio: '../music/DuyenPhan-DuongHongLoan.mp3',
         album_img: '../imgs/duyenphan.jpg',
         id: '35',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Đắp mộ cuộc tình',
@@ -345,7 +345,7 @@ export const musics = [
         audio: '../music/HoaNoVeDem-LeQuyen.mp3',
         album_img: '../imgs/hoanovedem.jpg',
         id: '37',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Sầu tím thiệp hồng',
@@ -354,7 +354,7 @@ export const musics = [
         audio: '../music/SauTimThiepHong-ThuHuongTranQuangLap.mp3',
         album_img: '../imgs/sautimthiephong.jpg',
         id: '38',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Em về kẻo trời mưa',
@@ -372,7 +372,7 @@ export const musics = [
         audio: '../music/ThanhPhoBuon-TruongVu.mp3',
         album_img: '../imgs/thanhphobuon.jpg',
         id: '40',
-        favorite: true,
+        favorite: false,
     },
     {
         name: 'Biển Tình',
@@ -381,7 +381,7 @@ export const musics = [
         audio: '../music/BienTinh-DamVinhHung.mp3',
         album_img: '../imgs/bientinh.jpg',
         id: '41',
-        favorite: true,
+        favorite: false,
     },
 
 
