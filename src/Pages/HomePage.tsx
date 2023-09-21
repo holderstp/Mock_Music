@@ -11,7 +11,6 @@ interface HomePageProps {
 }
 export function HomePage({
   handlePlayer,
-
   handleOnFavorite,
   handleOffFavorite,
 }: HomePageProps) {
